@@ -1,7 +1,4 @@
-"""
-This file contains the History class, which manages a list of calculations.
-It allows adding a calculation to the history, clearing the history, undoing the last calculation, and retrieving the history.
-"""
+# app/history/__init__.py
 
 class History:
     """
@@ -16,6 +13,8 @@ class History:
         Adds a calculation to the history.
         :param calculation: String representation of the calculation.
         """
+        if not isinstance(calculation, str):
+            raise TypeError("Calculation must be a string.")
         self.calculations.append(calculation)
 
     def clear_history(self):
@@ -35,7 +34,7 @@ class History:
 
     def get_history(self):
         """
-        Retrieves the list of calculations.
+        Retrieves a copy of the list of calculations.
         :return: List of calculations.
         """
-        return self.calculations
+        return self.calculations.copy()
